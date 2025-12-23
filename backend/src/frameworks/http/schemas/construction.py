@@ -27,6 +27,8 @@ class ItemPlanejadoBase(BaseModel):
     codigo_item: str
     descricao: Optional[str] = None
     unidade: Optional[str] = None
+    grupo: Optional[str] = None
+    cor: Optional[str] = None
     quantidade_total: float
     preco_venda_unitario: float
     categoria: Optional[Literal['PERFIL', 'COMPONENTE', 'VIDRO']] = None

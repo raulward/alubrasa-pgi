@@ -17,5 +17,20 @@ export const obrasServiceSafe = {
             console.error('Fetch error:', error);
             return [];
         }
+    },
+
+    importItems: async (obraId: string, file: File): Promise<any> => {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch(`${API_URL}/construction/obras/${obraId}/import`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Upload failed');
+        }
+        return response.json();
     }
 };

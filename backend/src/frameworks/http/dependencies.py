@@ -10,6 +10,7 @@ from src.use_cases.items.list_items import ListItemsUseCase
 from src.use_cases.construction.create_item import CreateItemPlanejadoUseCase
 from src.use_cases.construction.register_delivery import RegisterEntregaUseCase
 from src.use_cases.construction.list_items import ListItemsByObraUseCase
+from src.use_cases.construction.import_items import ImportConstructionItemsUseCase
 
 async def get_pricing_use_case(session: AsyncSession = Depends(get_db)) -> CalculatePriceUseCase:
     tax_repo = PostgresTaxRepository(session)
@@ -41,3 +42,8 @@ async def get_list_items_by_obra_use_case(
     repo: PostgresConstructionRepository = Depends(get_construction_repo)
 ) -> ListItemsByObraUseCase:
     return ListItemsByObraUseCase(repo)
+
+async def get_import_construction_items_use_case(
+    repo: PostgresConstructionRepository = Depends(get_construction_repo)
+) -> ImportConstructionItemsUseCase:
+    return ImportConstructionItemsUseCase(repo)

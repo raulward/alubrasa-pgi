@@ -32,3 +32,7 @@ class ConstructionRepositoryInterface(ABC):
     @abstractmethod
     async def get_entregas_by_item(self, item_id: UUID) -> List[EntregaRealizada]:
         pass
+
+    @abstractmethod
+    async def create_items_bulk(self, items: List[ItemPlanejado]) -> List[ItemPlanejado]:
+        pass

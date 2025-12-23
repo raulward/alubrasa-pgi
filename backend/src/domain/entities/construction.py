@@ -27,6 +27,8 @@ class ItemPlanejado(Base):
     codigo_item = Column(String, nullable=False)
     descricao = Column(String, nullable=True)
     unidade = Column(String, nullable=True)
+    grupo = Column(String, nullable=True) # Added
+    cor = Column(String, nullable=True)   # Added
     quantidade_total = Column(Float, nullable=False, default=0.0)
     preco_venda_unitario = Column(Float, nullable=False, default=0.0)
     categoria = Column(String, nullable=True) # Enum: 'PERFIL', 'COMPONENTE', 'VIDRO' - Using String for simplicity or Enum/Check constraint if preferred

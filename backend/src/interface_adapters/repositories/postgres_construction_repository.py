@@ -59,3 +59,10 @@ class PostgresConstructionRepository(ConstructionRepositoryInterface):
             select(EntregaRealizada).where(EntregaRealizada.item_planejado_id == item_id)
         )
         return list(result.scalars().all())
+
+    async def create_items_bulk(self, items: List[ItemPlanejado]) -> List[ItemPlanejado]:
+        self.session.add_all(items)
+        await self.session.commit()
+        # We might not be able to refresh all easily without re-fetching,
+        # but usually import doesn't require immediate ID return for all.
+        return items

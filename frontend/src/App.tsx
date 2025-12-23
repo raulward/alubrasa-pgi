@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import PricingPage from './features/pricing/PricingPage';
 import ItemsPage from './features/items/ItemsPageSafe';
-import ObrasPage from './features/obras/ObrasPageSafe';
+import ObrasPage from './features/obras/ControleObrasPage';
 import { AppSidebar } from './components/layout/AppSidebar';
 // Icons mostly used in Sidebar but imported here to ensure they work
 import { LayoutDashboard, Banknote, HardHat } from 'lucide-react';

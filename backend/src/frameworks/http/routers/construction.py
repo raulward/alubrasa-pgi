@@ -12,11 +12,13 @@ from src.frameworks.http.schemas.construction import (
 from src.frameworks.http.dependencies import (
     get_create_item_planejado_use_case,
     get_register_entrega_use_case,
-    get_list_items_by_obra_use_case
+    get_list_items_by_obra_use_case,
+    get_import_construction_items_use_case
 )
 from src.use_cases.construction.create_item import CreateItemPlanejadoUseCase
 from src.use_cases.construction.register_delivery import RegisterEntregaUseCase
 from src.use_cases.construction.list_items import ListItemsByObraUseCase
+from src.use_cases.construction.import_items import ImportConstructionItemsUseCase
 
 router = APIRouter(prefix="/construction", tags=["Construction/Obras"])
 
@@ -45,5 +47,18 @@ async def register_delivery(
 ):
     try:
         return await use_case.execute(entrega_in)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.post("/obras/{obra_id}/import", status_code=201)
+async def import_items(
+    obra_id: UUID,
+    file: UploadFile = File(...),
+    use_case: ImportConstructionItemsUseCase = Depends(get_import_construction_items_use_case)
+):
+    try:
+        content = await file.read()
+        result = await use_case.execute(obra_id, content, file.filename)
+        return result
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

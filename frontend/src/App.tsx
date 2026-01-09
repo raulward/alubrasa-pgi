@@ -2,13 +2,13 @@
 import { useState } from 'react';
 import PricingPage from './features/pricing/PricingPage';
 import ItemsPage from './features/items/ItemsPageSafe';
-import ObrasPage from './features/obras/ControleObrasPage';
+import ObrasPage from './features/obras/ObrasPageSafe'; // Using Safe version
+import { DashboardObras } from './features/obras/DashboardObras';
 import { AppSidebar } from './components/layout/AppSidebar';
-// Icons mostly used in Sidebar but imported here to ensure they work
-import { LayoutDashboard, Banknote, HardHat } from 'lucide-react';
+import { LayoutDashboard, Banknote } from 'lucide-react';
 
 function App() {
-    const [page, setPage] = useState<'pricing' | 'items' | 'dashboard' | 'prices-check' | 'obras-control'>('pricing');
+    const [page, setPage] = useState<'pricing' | 'items' | 'dashboard' | 'prices-check' | 'obras-control' | 'dashboard-obras'>('dashboard-obras');
 
     return (
         <div className="min-h-screen bg-background font-sans flex text-foreground">
@@ -25,6 +25,7 @@ function App() {
                 <div className="container mx-auto p-4 md:p-8 pt-16 md:pt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     {page === 'pricing' && <PricingPage />}
                     {page === 'obras-control' && <ObrasPage />}
+                    {page === 'dashboard-obras' && <DashboardObras />}
 
                     {/* Inline Items Page Placeholder */}
                     {page === 'items' && <ItemsPage />}

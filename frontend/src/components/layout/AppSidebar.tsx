@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Page = 'pricing' | 'items' | 'dashboard' | 'prices-check' | 'obras-control';
+type Page = 'pricing' | 'items' | 'dashboard' | 'prices-check' | 'obras-control' | 'dashboard-obras';
 
 interface AppSidebarProps {
     currentPage: Page;
@@ -91,6 +91,12 @@ export function AppSidebar({ currentPage, onNavigate }: AppSidebarProps) {
                         Administração
                     </h3>
                     <div className="space-y-1">
+                        <MenuItem
+                            active={currentPage === 'dashboard-obras'}
+                            icon={LayoutDashboard}
+                            label="Dashboard de Obras"
+                            onClick={() => onNavigate('dashboard-obras')}
+                        />
                         <MenuItem
                             active={currentPage === 'obras-control'}
                             icon={HardHat}
